@@ -1,27 +1,16 @@
 module.exports = function getSeason(date) {
-    const seasons = ['winter', "spring", "summer", "autumn", ]
-
-    if (!date) {
-        return ('Unable to determine the time of year!');
+    const seasons = ['winter','winter','winter', "spring","spring","spring", "summer", "summer", "summer", "autumn", "autumn", "autumn", ]
+    if(!date){
+        return 'Unable to determine the time of year!'
+    }else if(!(date instanceof Date) || isNaN(date)){
+        throw Error('Date argument is invalid')
     }
-    if (!(date instanceof Date) || isNaN(date)) {
-        throw new Error()
-    };
 
-    switch (date.getMonth()) {
-        case 0:
-        case 1:
-        case 11:
-            return seasons[0];
-        case 2:
-        case 3:
-        case 4:
-            return seasons[1];
-        case 5:
-        case 6:
-        case 7:
-            return seasons[2];
-        default:
-            return seasons[3];
-    }
+    const month = date.getMonth()+1;
+    seasons.forEach(element => {
+        if(month<4)element[month]
+        if(month>3 && month<7)element[month]
+        if(month>6 && month<10)element[month]
+        if(month>9 && month<=12)element[month]
+    });  
 };
