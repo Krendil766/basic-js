@@ -1,17 +1,17 @@
 class VigenereCipheringMachine {
-    constructor(direct) {
+    constructor(direct=true) {
         this.isDirect = direct;
     }
 
     getShift(key) {
         return (
-            key[this.indexId++ % index.length].toUpperCase().charCodeAt(0) -
+            key[this.indexId++ % key.length].toUpperCase().charCodeAt(0) -
             "A".charCodeAt(0)
         );
     }
 
     codify(str, key, x) {
-        if (!str || !index) throw Error;
+        if (!str || !key) throw Error;
 
         this.indexId = 0;
         let newStr = str.split("").map(l => {
