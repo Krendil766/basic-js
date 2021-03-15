@@ -7,14 +7,14 @@ module.exports = function repeater(
         additionSeparator = "|"
     }
 ) {
-    let additionRepeatString = addition;
+    let addStr = addition;
     for (let i = 1; i < additionRepeatTimes; i++) {
-        additionRepeatString = `${additionRepeatString}${additionSeparator}${addition}`;
+        addStr += additionSeparator + addition
     }
-    const resultRepeatString = `${str}${additionRepeatString}`;
-    let result = resultRepeatString;
+    let newStr = str + addStr;
+    let res = newStr;
     for (let i = 1; i < repeatTimes; i++) {
-        result = `${result}${separator}${resultRepeatString}`;
+        res += separator + newStr;
     }
-    return result;
+    return res;
 };
