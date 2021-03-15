@@ -15,12 +15,12 @@ const chainMaker = {
         return this;
     },
 
-    removeLink(position) {
-        if (typeof position !== 'number' || position >= this.getLength() || position <= 0) {
+    removeLink(pos) {
+        if (typeof pos !== 'number' || pos >= this.getLength() || pos <= 0) {
             this.arr = [];
             throw Error();
         } else {
-            this.arr.splice(position - 1, 1);
+            this.arr.splice(pos - 1, 1);
             return this;
         }
     },
