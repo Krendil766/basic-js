@@ -1,16 +1,16 @@
 class VigenereCipheringMachine {
-    constructor(direct = true) {
+    constructor(direct) {
         this.isDirect = direct;
     }
 
-    getShift(index) {
+    getShift(key) {
         return (
-            index[this.indexId++ % index.length].toUpperCase().charCodeAt(0) -
+            key[this.indexId++ % index.length].toUpperCase().charCodeAt(0) -
             "A".charCodeAt(0)
         );
     }
 
-    codify(str, index, x) {
+    codify(str, key, x) {
         if (!str || !index) throw Error;
 
         this.indexId = 0;
@@ -22,7 +22,7 @@ class VigenereCipheringMachine {
             let letterCharCode = l.toUpperCase().charCodeAt(0),
                 offset = "A".charCodeAt(0),
                 position = letterCharCode - offset,
-                shift = this.getShift(index);
+                shift = this.getShift(key);
 
             let newStrCode;
             if (x === "enc") newStrCode = (position + shift) % 26;
@@ -34,12 +34,12 @@ class VigenereCipheringMachine {
         return this.isDirect ? newStr.join("") : newStr.reverse().join("");
     }
 
-    encrypt(message, index) {
-        return this.codify(message, index, "enc");
+    encrypt(message, key) {
+        return this.codify(message, key, "enc");
     }
 
-    decrypt(encryptedMessage, index) {
-        return this.codify(encryptedMessage, index, "dec");
+    decrypt(encryptedMessage, key) {
+        return this.codify(encryptedMessage, key, "dec");
     }
 }
 
